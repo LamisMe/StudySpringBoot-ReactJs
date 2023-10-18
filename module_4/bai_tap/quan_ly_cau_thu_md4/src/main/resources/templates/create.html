@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang thêm mới</title>
+    <!--    Bootstrap 5-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!--    Box Icon-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+</head>
+<body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let fail = document.getElementById("fail").innerText;
+        console.log(fail)
+        Swal.fire({
+            title: fail,
+            icon: 'fail',
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false
+        });
+    });
+</script>
+<h1 style="text-align: center;margin-top: 10px;text-transform: uppercase">Trang Thêm Mới</h1>
+<a class="btn btn-secondary mb-3" style="margin-left: 26%" href="/players">Quay Lại</a>
+<div class="container bg-light" style="text-align: center;width: 50%">
+    <form action="/players/create" method="post" th:object="${playerDto}">
+        <div>
+            <label for="exampleInput" class="form-label">Mã Cầu Thủ*</label>
+            <input  th:field="*{idPlayer}" type="text" class="form-control" id="exampleInput"/>
+            <small th:if="${#fields.hasErrors('idPlayer')}" th:errors="*{idPlayer}" style="color: crimson"></small>
+        </div>
+        <div >
+            <label for="exampleInput1" class="form-label">Tên Cầu Thủ*</label>
+            <input th:field="*{name}" type="text" class="form-control" id="exampleInput1"/>
+            <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: crimson"></small>
+        </div>
+        <div>
+            <label for="exampleInput2" class="form-label">Ngày Sinh*</label>
+            <input  th:field="*{dateOfBirth}" type="date" class="form-control" id="exampleInput2"/>
+            <small th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"
+                   style="color: crimson"></small>
+        </div>
+        <div>
+            <label for="exampleInput3" class="form-label">Kinh nghiệm*</label>
+            <input th:field="*{experience}" type="number" class="form-control" id="exampleInput3"/>
+            <small th:if="${#fields.hasErrors('experience')}" th:errors="*{experience}"
+                   style="color: crimson"></small>
+        </div>
+        <div>
+            <label for="exampleSelect" class="form-label">Vị trí</label>
+            <select class="form-select" aria-label="Default select example" id="exampleSelect" th:field="*{position}">
+                <option th:each="possition: ${positionList}" th:value="${possition.id}"
+                        th:text="${possition.name}"></option>
+            </select>
+            <small th:if="${#fields.hasErrors('position')}" th:errors="*{position}"
+                   style="color: crimson"></small>
+        </div>
+        <div>
+            <label for="exampleSelect1" class="form-label">Đội</label>
+            <select class="form-select" aria-label="Default select example" id="exampleSelect1" th:field="*{team}">
+                <option th:each="team: ${teamList}" th:value="${team.id}" th:text="${team.name}"></option>
+            </select>
+            <small th:if="${#fields.hasErrors('team')}" th:errors="*{team}"
+                   style="color: crimson"></small>
+        </div>
+        <div class="input-box">
+            <span class="details">Ảnh</span>
+            <div id="image-preview-container2" class="card" style="width: 18rem;">
+                <img style="margin: 2%; width: 3rem; text-align: center" th:src="*{avatar}"
+                     alt="image chose" src=""/>
+                <input type="hidden" th:value="*{avatar}">
+            </div>
+            <div>
+                <input type="file" id="upload-file" multiple accept=".jpg, .jpeg, .png"
+                       onchange="limitFiles(this,1)" style="border: none">
+                <input name="image2" type="hidden" id="image2" th:field="*{avatar}"
+                       required>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-warning mt-5" style="text-transform: uppercase; width: 30%">Thêm
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+    function limitFiles(input, maxFiles) {
+        if (input.files.length > maxFiles) {
+            alert(`Chỉ được chọn đúng ${maxFiles} tệp.`);
+            input.value = ""; // Xóa tệp đã chọn nếu vượt quá giới hạn
+        }
+    }
+
+    document.getElementById("upload-file").addEventListener("change", function (e) {
+        const container = document.getElementById("image-preview-container2");
+        container.innerHTML = "";
+        const maxFiles = 1;
+        const files = e.target.files;
+        if (files.length !== maxFiles) {
+            alert(`Bạn phải chọn đúng ${maxFiles} tệp.`);
+            e.target.value = "";
+            return;
+        }
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(file);
+            img.style.width = "5rem"
+            img.style.height = "5rem"
+            img.style.margin = "7px";
+            container.appendChild(img);
+        }
+    });
+</script>
+<script type="module" src="/js/configulation.js"></script>
+<script type="module" src="/js/upload.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+</body>
+</html>
