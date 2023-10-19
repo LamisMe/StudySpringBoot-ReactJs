@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang danh sách</title>
+
+    <!--    Bootstrap 5-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!--    Box Icon-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+    <style>
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin-top: 5vh;
+        }
+
+        table {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div th:if="${success}">
+    <span th:text="${success}" id="success" style="display: none"></span>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let success = document.getElementById("success").innerText;
+        console.log(success)
+        Swal.fire({
+            title: success,
+            icon: 'success',
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false
+        });
+    });
+</script>
+<h1 style="text-align: center; text-transform: uppercase">Danh sách</h1>
+<div class="row">
+    <div class="col-md-6">
+        <a href="/players/create"><i class='bx bxs-plus-square bx-lg' style='color:#36d018;padding-top: 30px;padding-left: 50px'></i></a>
+    </div>
+    <div class="col-md-6">
+        <form class="row g-3 mt-3" style="float: right;margin-right: 5%" action="/players">
+            <div class="col-auto">
+                <label for="nameSearch" class="visually-hidden">Search Name</label>
+                <input type="text" class="form-control" name="nameSearch" id="nameSearch"
+                       placeholder="Nhập vào đây để tìm kiếm">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3" style="color: white;text-transform: uppercase;">Tìm
+                    Kiếm
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <h3 th:if="${players.isEmpty()}" style="color: crimson;text-align: center;margin-top: 10%">No Data</h3>
+</div>
+<table class="table table-striped" th:unless="${players.isEmpty()}">
+    <thead>
+    <tr>
+        <th rowspan="1">STT</th>
+        <th>Mã</th>
+        <th>Tên</th>
+        <th>Ngày Sinh</th>
+        <th>Vị Trí</th>
+        <th>Chức Năng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="player,status: ${players}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${player.idPlayer}"></td>
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.dateOfBirth}"></td>
+        <td th:text="${player.position.name}"></td>
+        <td>
+            <a th:href="@{/players/detail(id=${player.id})}">
+                <button class="btn btn-warning">
+                    <i class='bx bxs-error-circle bx-sm'></i>
+                </button>
+            </a>
+            <a th:href="@{/players/update(id=${player.id})}">
+                <button class="btn btn-primary">
+                    <i class='bx bxs-edit bx-sm'></i>
+                </button>
+            </a>
+            <button type="button" class="btn btn-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    th:attr="onclick= |deleteModal('${player.id}','${player.idPlayer}')|">
+                <i class='bx bxs-trash-alt bx-sm'></i>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="page mt-3" style="text-align: center">
+    <a class="previous" th:if="${players.hasPrevious()}" th:href="@{/players(page=${players.number-1})}">
+        <i class='bx bxs-skip-previous-circle bx-md' style='color:#68d259' ></i>
+    </a>
+    <div th:unless="${players.totalPages <= 1}">
+        <span th:text="${players.number+1}"></span>/
+        <span th:text="${players.totalPages}"></span>
+    </div>
+    <a class="next" th:if="${players.hasNext()}" th:href="@{/players(page=${players.number+1})}">
+        <i class='bx bxs-skip-previous-circle bx-flip-horizontal bx-md' style='color:#68d259' ></i>
+    </a>
+</div>
+<!--Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/players/delete" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>Xoá</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn có muốn xoá cầu thủ có mã
+                        <span id="name"></span></p>
+                    <label>
+                        <input type="text" hidden="hidden" name="id" id="id"/>
+                    </label>
+                    <p style="color: red">Warning: hoạt động này không thể hoàn tác </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                    <button type="submit" class="btn btn-primary">Xoá</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--Bootstraps 5-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<!--java script-->
+<script>
+    function deleteModal(id, name) {
+        document.getElementById("id").value = id;
+        document.getElementById("name").innerHTML = name;
+    }
+</script>
+</body>
+</html>
