@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trang chi tiết</title>
+    <th:block th:include="/layout :: head"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="card mb-3" style="width: 100%">
+        <div class="row g-0" th:object="${player}">
+            <input type="hidden" th:field="*{idPlayer}">
+            <div class="col-md-4">
+                <img th:src="*{avatar}" class="img-fluid rounded-start" alt="..." src=""/>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">Thông Tin</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Tên:</th>
+                            <td th:text="*{name}"></td>
+                        </tr>
+                        <tr>
+                            <th>Ngày Sinh:</th>
+                            <td th:text="*{dateOfBirth}"></td>
+                        </tr>
+                        <tr>
+                            <th>Kinh nghiệm:</th>
+                            <td th:text="*{experience + ' năm'}"></td>
+                        </tr>
+                        <tr>
+                            <th>Vị trí:</th>
+                            <td th:text="*{position.name}"></td>
+                        </tr>
+                        <tr>
+                            <th>Đội:</th>
+                            <td th:text="*{team.name}"></td>
+                        </tr>
+                        </thead>
+                    </table>
+                    <a class="btn btn-warning" th:href="@{/players/update(id=${player.id})}">Cập nhật</a>
+                    <a class="btn btn-secondary" th:href="@{/players}">Quay Lại</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MDB -->
+<script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+</body>
+</html>
