@@ -5,6 +5,9 @@ import com.example.quan_ly_cau_thu.model.Team;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class PlayerDto implements Validator {
     private Integer id;
     private String idPlayer;
@@ -113,15 +116,27 @@ public class PlayerDto implements Validator {
         PlayerDto playerDto = (PlayerDto) target;
         if(playerDto.getIdPlayer().equals("")){
             errors.rejectValue("idPlayer",null,"*Không được để trống");
+        } else if (playerDto.getIdPlayer().length() > 45) {
+            errors.rejectValue("idPlayer",null,"*Không được vượt quá 45 ký tự");
         }
         if(playerDto.getName().equals("")){
             errors.rejectValue("name",null,"*Không được để trống");
+        } else if (playerDto.getName().length() > 100) {
+            errors.rejectValue("name",null,"*Không được vượt quá 100 ký tự");
         }
-        if(playerDto.getExperience() <= 0){
+        if(playerDto.getExperience() == 0){
             errors.rejectValue("experience",null,"*Không được để trống");
+        }else if(playerDto.getExperience() > 999999999) {
+            errors.rejectValue("experience", null, "*Nhập số quá lớn");
+        }else if(playerDto.getExperience() < 0) {
+            errors.rejectValue("experience", null, "*Không được nhập số nguyên âm");
         }
         if(playerDto.getDateOfBirth().equals("")){
             errors.rejectValue("dateOfBirth",null,"*Không được để trống");
+        }else if(LocalDate.now().isBefore(LocalDate.parse(playerDto.getDateOfBirth()))) {
+            errors.rejectValue("dateOfBirth", null, "*Không được nhập ngày tương lai");
+        }else if(Period.between(LocalDate.parse(playerDto.getDateOfBirth()),LocalDate.now()).getYears() < 15) {
+            errors.rejectValue("dateOfBirth", null, "*Không được nhập tuổi bé hơn 15");
         }
         if(playerDto.getAvatar().isEmpty()){
             errors.rejectValue("avatar",null,"*Không được để trống");

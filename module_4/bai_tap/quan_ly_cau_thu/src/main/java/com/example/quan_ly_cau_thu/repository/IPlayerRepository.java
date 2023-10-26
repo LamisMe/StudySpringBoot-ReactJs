@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface IPlayerRepository extends JpaRepository<Player,Integer> {
     @Query(value = "select * from players where is_deleted = 0 and players.name like:name",nativeQuery = true)
     Page<Player> findAllPlayer(Pageable pageable, @Param("name") String name);
@@ -16,4 +18,5 @@ public interface IPlayerRepository extends JpaRepository<Player,Integer> {
     @Transactional
     @Query(value = "update players set is_deleted = 1 where players.id =:id",nativeQuery = true)
     void deletedPlayer(@Param("id") Integer id);
+    
 }

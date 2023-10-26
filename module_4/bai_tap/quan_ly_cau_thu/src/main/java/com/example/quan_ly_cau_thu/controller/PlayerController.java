@@ -116,4 +116,10 @@ public class PlayerController {
         redirectAttributes.addFlashAttribute("success","Cập nhật thành công");
         return "redirect:/players";
     }
+    @GetMapping("/team")
+    public String showFormTeam(Model model){
+    model.addAttribute("list",playerService.findAll());
+     return "formation";
+    }
+
 }

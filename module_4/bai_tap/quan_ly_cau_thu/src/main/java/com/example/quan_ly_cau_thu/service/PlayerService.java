@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class PlayerService implements IPlayerService {
     @Autowired
@@ -38,5 +40,10 @@ public class PlayerService implements IPlayerService {
     @Override
     public void updatePlayer(Player player) {
         playerRepository.save(player);
+    }
+
+    @Override
+    public List<Player> findAll() {
+        return playerRepository.findAll();
     }
 }

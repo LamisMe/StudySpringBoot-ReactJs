@@ -4,7 +4,7 @@ const uploadedURLs = [];
 
 async function handleUpload(e) {
     console.dir(e);
-    const ref = firebase.storage().ref();
+    const ref = firebase.storage().ref("lamrep");
     const files = e.target.files;
 
     for (const file of files) {
