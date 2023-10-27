@@ -1,5 +1,6 @@
 package com.example.quan_ly_cau_thu.controller;
 
+import com.example.quan_ly_cau_thu.dto.LikePlayerDto;
 import com.example.quan_ly_cau_thu.dto.PlayerDto;
 import com.example.quan_ly_cau_thu.model.Player;
 import com.example.quan_ly_cau_thu.model.Position;
@@ -18,12 +19,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/players")
+@SessionAttributes("like")
 public class PlayerController {
+    @ModelAttribute("like")
+    public LikePlayerDto initPlayer(){
+        return new LikePlayerDto();
+    }
     @Autowired
     private IPlayerService playerService;
     @Autowired
@@ -34,11 +43,15 @@ public class PlayerController {
     @GetMapping("")
     public String showPagePlayer(@RequestParam(defaultValue = "0", required = false) int page,
                                  @RequestParam(defaultValue = "", required = false) String nameSearch,
-                                 Model model) {
-        Pageable pageable = PageRequest.of(page, 5);
+                                 Model model,
+                                 @CookieValue(value = "idPlayer",defaultValue = "-1") Integer idPlayer) {
+        if (idPlayer !=-1){
+            model.addAttribute("history",playerService.findById(idPlayer));
+        }
+        Pageable pageable = PageRequest.of(page, 6);
         Page<Player> players = playerService.findAllPlayer(pageable, nameSearch);
         model.addAttribute("players", players);
-        return "list";
+        return "player/list";
     }
 
     @PostMapping("/delete")
@@ -56,7 +69,7 @@ public class PlayerController {
         model.addAttribute("playerDto", new PlayerDto());
         model.addAttribute("positionList", positionList);
         model.addAttribute("teamList", teamList);
-        return "create";
+        return "player/create";
     }
 
     @PostMapping("/create")
@@ -70,7 +83,7 @@ public class PlayerController {
             List<Team> teamList = teamService.findAllTeam();
             model.addAttribute("positionList", positionList);
             model.addAttribute("teamList", teamList);
-            return "create";
+            return "player/create";
         }
         Player player = new Player();
         BeanUtils.copyProperties(playerDto, player);
@@ -80,10 +93,15 @@ public class PlayerController {
     }
     @GetMapping("/detail")
     public String showDetailPlayer(@RequestParam int id,
-                                   Model model){
+                                   Model model,
+                                   HttpServletResponse response){
+        Cookie cookie = new Cookie("idPlayer", id+"");
+        cookie.setMaxAge(1*24*60*60);
+        cookie.setPath("/");
+        response.addCookie(cookie);
         Player player = playerService.findById(id);
         model.addAttribute("player",player);
-        return "detail";
+        return "player/detail";
     }
     @GetMapping("/update")
     public String showFormUpdatePlayer(Model model,
@@ -94,7 +112,7 @@ public class PlayerController {
         model.addAttribute("playerDto", player);
         model.addAttribute("positionList", positionList);
         model.addAttribute("teamList", teamList);
-        return "edit";
+        return "player/edit";
     }
 
     @PostMapping("/update")
@@ -108,7 +126,7 @@ public class PlayerController {
             List<Team> teamList = teamService.findAllTeam();
             model.addAttribute("positionList", positionList);
             model.addAttribute("teamList", teamList);
-            return "edit";
+            return "player/edit";
         }
         Player player = new Player();
         BeanUtils.copyProperties(playerDto, player);
@@ -119,7 +137,17 @@ public class PlayerController {
     @GetMapping("/team")
     public String showFormTeam(Model model){
     model.addAttribute("list",playerService.findAll());
-     return "formation";
+     return "player/formation";
     }
-
+    @GetMapping("/like/{id}")
+    public String addToLike(@PathVariable Integer id,
+                            @SessionAttribute("like")LikePlayerDto like){
+        Optional<Player> player = playerService.findByIdOptional(id);
+        if(player.isPresent()){
+            PlayerDto playerDto = new PlayerDto();
+            BeanUtils.copyProperties(player.get(),playerDto);
+            like.addLikePlayer(playerDto);
+        }
+        return "redirect:/likes";
+    }
 }

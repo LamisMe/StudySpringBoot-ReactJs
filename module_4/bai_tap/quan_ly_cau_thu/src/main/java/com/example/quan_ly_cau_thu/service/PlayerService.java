@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerService implements IPlayerService {
@@ -29,6 +30,11 @@ public class PlayerService implements IPlayerService {
     @Override
     public Player findById(int id) {
         return playerRepository.findById(id).get();
+    }
+
+    @Override
+    public Optional<Player> findByIdOptional(int id) {
+        return playerRepository.findById(id);
     }
 
     @Override

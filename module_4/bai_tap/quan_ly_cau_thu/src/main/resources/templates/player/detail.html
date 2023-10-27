@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Trang chi tiết</title>
-    <th:block th:include="/layout :: head"></th:block>
+    <th:block th:include="/player/layout :: head"></th:block>
 </head>
 <body>
 <div class="container">
@@ -39,6 +39,7 @@
                         </tr>
                         </thead>
                     </table>
+                    <a th:href="@{/players/like/__${player.id}__}"><i class='bx bx-heart'></i></a>
                     <a class="btn btn-warning" th:href="@{/players/update(id=${player.id})}">Cập nhật</a>
                     <a class="btn btn-secondary" th:href="@{/players}">Quay Lại</a>
                 </div>

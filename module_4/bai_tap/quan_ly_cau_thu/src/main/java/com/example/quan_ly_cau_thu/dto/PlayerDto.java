@@ -7,6 +7,7 @@ import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 public class PlayerDto implements Validator {
     private Integer id;
@@ -141,5 +142,18 @@ public class PlayerDto implements Validator {
         if(playerDto.getAvatar().isEmpty()){
             errors.rejectValue("avatar",null,"*Không được để trống");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlayerDto playerDto = (PlayerDto) o;
+        return Objects.equals(id, playerDto.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

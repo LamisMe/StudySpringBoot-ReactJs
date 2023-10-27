@@ -18,5 +18,5 @@ public interface IPlayerRepository extends JpaRepository<Player,Integer> {
     @Transactional
     @Query(value = "update players set is_deleted = 1 where players.id =:id",nativeQuery = true)
     void deletedPlayer(@Param("id") Integer id);
-    
+
 }

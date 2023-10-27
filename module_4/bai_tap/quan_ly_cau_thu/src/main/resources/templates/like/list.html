@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang hiển thị</title>
+    <!--    Bootstrap 5-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+<a class="btn btn-secondary mb-3" style="margin:10px" href="/players">Quay Lại</a>
+<h1 style="text-align: center;text-transform: uppercase">Danh sách cầu thủ yêu thích</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Tên cầu thủ</th>
+        <th>Ngày sinh</th>
+        <th>Kinh nghiệm</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="like:${like.playerDtoSet}">
+        <td th:text="${like.name}"></td>
+        <td th:text="${like.dateOfBirth}"></td>
+        <td th:text="${like.experience + ' year'}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
