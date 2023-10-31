@@ -22,11 +22,10 @@
     <td>Đinh Thanh Hải</td>
     <td>12-12-1999</td>
     <td>No Image</td>
-    
   </tr>
   </tbody>
 </table>
-<script src="code.jquery.com_jquery-3.7.1.min.js"></script>
+<script src="../static/code.jquery.com_jquery-3.7.1.min.js"></script>
 <script>
   $(document).ready(function () {
     function init() {
@@ -37,16 +36,16 @@
         dataType: 'json',
         success: function (data) {
           console.log(data)
-          let content = '';
+          let tr = [];
           for (let i = 0; i < data.length; i++) {
-           content += `<tr>
-            <td>${i+1}</td>
-            <td>${data[i].name}</td>
-            <td>${data[i].dateOfBirth}</td>
-            <td><img src="${data[i].avatar}"style="height: 240px;width: 240px;"></td>
-            </tr>`           
+            tr.push("<tr>")
+            tr.push("<td>"+(i+1)+"</td>")
+            tr.push("<td>"+data[i].name+"</td>")
+            tr.push("<td>"+data[i].dateOfBirth+"</td>")
+            tr.push("<td>"+data[i].avatar+"</td>")
+            tr.push("</tr>")
           }
-          $("tbody").append(content)
+          $("tbody").append(tr.join(""))
         }
       })
     }

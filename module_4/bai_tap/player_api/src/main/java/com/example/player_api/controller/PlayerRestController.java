@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
-@CrossOrigin("*")
+
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/players")
 public class PlayerRestController {
     @Autowired
     private IPlayerService playerService;
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<List<Player>> getAllPlayer(){
         List<Player> playerList = playerService.findAll();
         if(playerList.isEmpty()){
