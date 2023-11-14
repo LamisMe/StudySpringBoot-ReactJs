@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thư Thông Báo Hủy Đơn Hàng</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #f8f8f8;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    
+    li {
+      margin-bottom: 5px;
+    }
+    
+    .highlight {
+      font-weight: bold;
+      color: #007bff;
+    }
+    
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+    }
+    h1{
+      animation:  2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <h1>Loading</h1>
+  <div class="container">
+    <h1>Thư Thông Báo Hủy Đơn Hàng</h1>
+    <p>Xin chào <span class="highlight">{customerUsername}</span>,</p>
+    <p>MOVIES24H xin lỗi về vấn đề bản quyền nên chúng tôi không thể tiếp tục phát sóng phim <span class="highlight">{movieTitle}</span>.</p>
+    <ul>
+      <li>Chúng tôi sẽ hoàn số tiền <span class="highlight">{totalPrice}</span> vào thời gian 3 - 6 tiếng.</li>
+      <li>Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ tại MOVIES24H!</li>
+      <li>Rất xin lỗi quý khách về vấn đề này!</li>
+    </ul>
+    <p class="footer">MOVIES24H | Địa chỉ của bạn | Số điện thoại của bạn</p>
+  </div>
+</body>
+</html>
