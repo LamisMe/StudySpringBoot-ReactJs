@@ -32,9 +32,9 @@ console.log(totalArray);
 
 // 3. Kiểm tra 1 mảng có chứa số V hay không nếu có trả về V không thì trả về "không tìm thấy" (some).
 
-let message = array.some((item) => item == 5);
+let number = array.some((item) => item == 5);
 function check(){
-    if(message == false){
+    if(!number){
         return "không tìm thấy";
     }else{
         return 5;
