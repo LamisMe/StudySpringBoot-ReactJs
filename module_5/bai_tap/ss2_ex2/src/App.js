@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   return (
+    <>
     <div className="container d-flex align-items-center text-center">
     <div className="form-signin">
       <form>
@@ -26,6 +27,7 @@ function App() {
       </form>
     </div>
   </div>
+  </>
   );
 }
 
