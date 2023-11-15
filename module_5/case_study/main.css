@@ -1,0 +1,12 @@
+ul li a {
+    font-weight: 600;
+  }
+  footer .content {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  footer p{
+   text-align: center;
+   margin-top: 20px;
+  font-weight: 600;
+  }
