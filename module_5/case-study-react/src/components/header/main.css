@@ -1,0 +1,29 @@
+ul li a {
+    font-weight: 600;
+  }
+  footer .content {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  footer p{
+   text-align: center;
+   margin-top: 20px;
+  font-weight: 600;
+  }
+  label{
+    font-weight: 600;
+  }
+  .title{
+      text-align: center;
+      font-weight: 600;
+  }
+  header nav ul li a{
+    color: green;
+  }
+  .navbar-light .navbar-nav .nav-link.active{
+    color: #13ab67;
+    font-weight: 600;
+  }
+.table{
+  height: 350px;
+}
