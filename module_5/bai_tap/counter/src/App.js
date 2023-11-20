@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import UseIncrement from './components/UseIncrement';
+import Counter from './components/Counter';
 
 function App() {
   return (
     <>
-     < UseIncrement />
+     < Counter />
     </>
    
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 
-function UseIncrement(){
+function Counter(){
     const [numberValue1,setNumberValue1] = useState(0);
     const [numberValue2,setNumberValue2] = useState(0);
     const incrementCount1 = () =>{
@@ -20,4 +20,4 @@ function UseIncrement(){
     )
 }
 
-export default UseIncrement;
+export default Counter;
