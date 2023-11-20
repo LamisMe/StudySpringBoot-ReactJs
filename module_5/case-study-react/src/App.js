@@ -8,6 +8,8 @@ import CustomerUpdate from './components/customer/CustomerUpdate';
 import FuramaServiceList from './components/service/FuramaServiceList';
 import FuramaServiceCreate from './components/service/FuramaServiceCreate';
 import FuramaServiceUpdate from './components/service/FuramaServiceUpdate';
+import ContractList from './components/contract/ContractList';
+import ContractCreate from './components/contract/ContractCreate';
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
     {/* < CustomerUpdate /> */}
     {/* <FuramaServiceList/>
     <FuramaServiceCreate/> */}
-    <FuramaServiceUpdate/>
+    {/* <FuramaServiceUpdate/> */}
+    {/* < ContractCreate /> */}
+    < ContractList />
     < Footer/>
     </>
   );
