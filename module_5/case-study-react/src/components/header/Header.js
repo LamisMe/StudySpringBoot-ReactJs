@@ -1,5 +1,6 @@
 import React from "react";
 import './main.css'
+import { Link } from "react-router-dom";
 
 function Header(){
   return(
@@ -23,13 +24,13 @@ function Header(){
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"
-                  >GIỚI THIỆU</a
+                <Link class="nav-link active" aria-current="page" to="/"
+                  >Trang chủ</Link
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"
-                  >LOẠI PHÒNG</a
+                <Link class="nav-link active" aria-current="page" to="/list-contract"
+                  >Hợp đồng</Link
                 >
               </li>
               <li class="nav-item">
