@@ -1,0 +1,14 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Hôm nay là thứ mấy ?",
+      "quantity": 3
+    },
+    {
+      "title": "Hehe",
+      "quantity": 5,
+      "id": 3
+    }
+  ]
+}
