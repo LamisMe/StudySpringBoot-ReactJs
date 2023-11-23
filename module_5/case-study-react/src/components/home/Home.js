@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Home(){
     return(
@@ -42,9 +43,9 @@ function Home(){
                 <small class="card-text" className="style-me-2">
                   DIỆN TÍCH PHÒNG: 40.1m<sup>2</sup> </small
                 ><span className="style-me"
-                  ><a href="" className="style-me-3"
+                  ><Link href="" className="style-me-3" to="/list-customer"
                     ><i class="bx bxs-error-circle bx-sm bx-rotate-180"></i> Xem
-                    thêm</a
+                    thêm</Link
                   ></span
                 >
               </div>
@@ -62,9 +63,9 @@ function Home(){
                 <small class="card-text" className="style-me-2">
                   DIỆN TÍCH PHÒNG: 40.1m<sup>2</sup> </small
                 ><span className="style-me"
-                  ><a href="" className="style-me-3"
+                  ><Link href="" className="style-me-3" to="/list-customer"
                     ><i class="bx bxs-error-circle bx-sm bx-rotate-180"></i> Xem
-                    thêm</a
+                    thêm</Link
                   ></span
                 >
               </div>
@@ -82,9 +83,9 @@ function Home(){
                 <small class="card-text" className="style-me-2">
                   DIỆN TÍCH PHÒNG: 40.1m<sup>2</sup> </small
                 ><span className="style-me"
-                  ><a href="" className="style-me-3"
+                  ><Link href="" className="style-me-3" to="/list-customer"
                     ><i class="bx bxs-error-circle bx-sm bx-rotate-180"></i> Xem
-                    thêm</a
+                    thêm</Link
                   ></span
                 >
               </div>
@@ -102,9 +103,9 @@ function Home(){
                 <small class="card-text" className="style-me-2">
                   DIỆN TÍCH PHÒNG: 40.1m<sup>2</sup> </small
                 ><span className="style-me"
-                  ><a href="" className="style-me-3"
+                  ><Link href="" className="style-me-3" to="/list-customer"
                     ><i class="bx bxs-error-circle bx-sm bx-rotate-180"></i> Xem
-                    thêm</a
+                    thêm</Link
                   ></span
                 >
               </div>
@@ -122,9 +123,9 @@ function Home(){
                 <small class="card-text" className="style-me-2">
                   DIỆN TÍCH PHÒNG: 40.1m<sup>2</sup> </small
                 ><span className="style-me"
-                  ><a href="" className="style-me-3"
+                  ><Link href="" className="style-me-3" to="/list-customer"
                     ><i class="bx bxs-error-circle bx-sm bx-rotate-180"></i> Xem
-                    thêm</a
+                    thêm</Link
                   ></span
                 >
               </div>
@@ -142,9 +143,9 @@ function Home(){
                 <small class="card-text" className="style-me-2">
                   DIỆN TÍCH PHÒNG: 40.1m<sup>2</sup> </small
                 ><span className="style-me"
-                  ><a href="" className="style-me-3"
+                  ><Link href="" className="style-me-3" to="/list-customer"
                     ><i class="bx bxs-error-circle bx-sm bx-rotate-180"></i> Xem
-                    thêm</a
+                    thêm</Link
                   ></span
                 >
               </div>
@@ -162,9 +163,9 @@ function Home(){
                 <small class="card-text" className="style-me-2">
                   DIỆN TÍCH PHÒNG: 40.1m<sup>2</sup> </small
                 ><span className="style-me"
-                  ><a href="" className="style-me-3"
+                  ><Link className="style-me-3" to="/list-customer"
                     ><i class="bx bxs-error-circle bx-sm bx-rotate-180"></i> Xem
-                    thêm</a
+                    thêm</Link
                   ></span
                 >
               </div>

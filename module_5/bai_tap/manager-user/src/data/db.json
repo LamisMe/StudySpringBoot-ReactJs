@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Truong",
+      "email": "truong2001@gmail.com",
+      "website": "www.truong2001.com"
+    },
+    {
+      "id": 2,
+      "name": "Hai",
+      "email": "hai1999@gmail.com",
+      "website": "www.hai1999.com"
+    }
+  ]
+}

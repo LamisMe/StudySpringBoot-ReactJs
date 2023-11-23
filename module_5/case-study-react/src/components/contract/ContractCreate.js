@@ -7,8 +7,9 @@ function ContractCreate(){
         <>
         <div class="container" style={{marginTop: "6rem"}}>
         <h3 class="mt-3">Thêm hợp đồng</h3>
-        <for >
-            <div class="mb-3">
+        <Formik>
+          <Form>
+          <div class="mb-3">
               <label for="name" class="form-label">Mã hợp đồng<span class="text-danger">(*)</span></label>
               <Field type="text" class="form-control" id="name"/>
             </div>
@@ -46,7 +47,9 @@ function ContractCreate(){
                 <Field type="text" class="form-control" id="inputAddress"/>
               </div>
             <button type="submit" class="btn btn-primary">Xác nhận</button>
-          </for>
+          </Form>
+           
+          </Formik>
       </div>
         </>
     )

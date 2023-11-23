@@ -1,0 +1,55 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "name": "Thuy Nhung",
+      "dayOfBirth": "08-03-2002",
+      "gender": 0,
+      "idCard":"13245667890",
+      "phoneNumber":"0376355291",
+      "email":"thuynhung0803@gmail.com",
+      "customersTypeId":1,
+      "address":"Quang Binh"
+    },
+    {
+      "id": 2,
+      "name": "Nghia",
+      "dayOfBirth": "16-04-1994",
+      "gender": 1,
+      "idCard":"132454537890",
+      "phoneNumber":"03774533426",
+      "email":"nghiaseven@gmail.com",
+      "customersTypeId":2,
+      "address":"Quang Binh"
+    }
+  ],
+  "contracts": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "customerId": 1
+    }
+  ],
+  "customers_type": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinium"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
+    }
+  ]
+}
