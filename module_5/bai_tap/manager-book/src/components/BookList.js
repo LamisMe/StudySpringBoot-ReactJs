@@ -26,16 +26,17 @@ export function BookList() {
   }
   return (
     <>
+    <div className="container">
     <h3>Library</h3>
-    <Link className="btn btn-sm btn-success rounded-0 me-3" type="button"
+    <div className="text-end"><Link className="btn btn-sm btn-success rounded-0 mb-3" type="button"
                                              to="/create">Add a new book
-                                    </Link>
+                                    </Link></div>    
       <table class="table">
         <thead class="table-dark">
             <tr>
-                <th>Title</th>
-                <th>Quantity</th>
-                <th>Actions</th>
+                <th scope="col" className="col-6">Title</th>
+                <th scope="col" className="col-3">Quantity</th>
+                <th scope="col" className="col-3">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -83,6 +84,8 @@ export function BookList() {
                         </div>
                     </div>
                 </div>
+    </div>
+    
     </>
   );
 }
