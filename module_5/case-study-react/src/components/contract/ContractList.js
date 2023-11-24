@@ -6,7 +6,7 @@ function ContractList(){
     return(
         <>
         <div class="container" style={{marginTop: "6rem"}}>
-        <h3 class="title">DANH SÁCH HỢP ĐỒNG</h3>
+        <h3 class="title fst-italic">DANH SÁCH HỢP ĐỒNG</h3>
         <div className="text-end">
         <Link class="nav-link active" className="btn btn-success mb-3" aria-current="page" to="/create-contract"
                   >Tạo mới hợp đồng</Link
@@ -24,7 +24,7 @@ function ContractList(){
                 <th>Chức năng</th>
             </tr>
            </thead>
-           <tbody className="table-success">
+           <tbody className="table-light fw-bolder">
             <tr>
                 <td>1</td>
                 <td>LNTN</td>

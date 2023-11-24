@@ -20,8 +20,9 @@ function CustomerList() {
   }
   return (
     <>
-      <div class="container" style={{ marginTop: "6rem" }}>
-        <h3 class="title">DANH SÁCH KHÁCH HÀNG</h3>
+      <div class="container" style={{ marginTop: "6rem",
+    backgroundColor:"#f5f7f8" }}>
+        <h3 class="title mt-3">DANH SÁCH KHÁCH HÀNG</h3>
         <div className="text-end">
           <Link
             class="nav-link active"
@@ -44,14 +45,14 @@ function CustomerList() {
               <th>Chức năng</th>
             </tr>
           </thead>
-          <tbody className="table-success">
+          <tbody className="table-light fst-italic">
             {customers.map((item,index) => (
               <tr key={item.id}>
                 <td>{index+1}</td>
                 <td>{item.name}</td>
-                <td>{item.dayOfBirth}</td>
+                <td>{new Date(item.dayOfBirth).toLocaleDateString()}</td>
                 <td>{item.address}</td>
-                <td>{item.customersTypeId == customerTypes.id}</td>
+                <td>{item.customersType.name}</td>
                 <td>
                 <Link
                     className="btn btn-sm btn-primary rounded-0 me-3"

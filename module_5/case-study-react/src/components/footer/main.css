@@ -2,6 +2,7 @@ ul li a {
     font-weight: 600;
   }
   footer .content {
+    padding-top: 10px;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
   }
@@ -21,8 +22,13 @@ ul li a {
   header nav ul li a{
     color: green;
   }
-  .navbar-light .navbar-nav .nav-link.active{
-    color: whitesmoke;
-    font-weight: 600;
-  }
-
+.nav-item a.active{
+  border-bottom: 2px white solid;
+}
+.nav-item a{
+  margin: 0 20px;
+}
+a {
+  color: white;
+  text-decoration: unset;
+}

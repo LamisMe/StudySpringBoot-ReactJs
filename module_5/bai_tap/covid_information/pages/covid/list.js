@@ -30,7 +30,7 @@ export default function CovidList({covids}) {
 }
 
 export const getStaticProps = async()=> {
-  const response =  await axios.get("http://localhost:8081/covids");
+  const response =  await axios.get("http://localhost:8080/covids");
   const data = response.data
   return {
     props: {

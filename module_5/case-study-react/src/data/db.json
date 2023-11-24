@@ -3,23 +3,29 @@
     {
       "id": 1,
       "name": "Thuy Nhung",
-      "dayOfBirth": "08-03-2002",
+      "dayOfBirth": "2002-03-08T00:00:00Z",
       "gender": 0,
       "idCard":"13245667890",
       "phoneNumber":"0376355291",
       "email":"thuynhung0803@gmail.com",
-      "customersTypeId":1,
+      "customersType":{
+          "id":1,
+          "name": "Dinamond"
+      },
       "address":"Quang Binh"
     },
     {
       "id": 2,
       "name": "Nghia",
-      "dayOfBirth": "16-04-1994",
+      "dayOfBirth": "1994-03-08T00:00:00Z",
       "gender": 1,
       "idCard":"132454537890",
       "phoneNumber":"03774533426",
       "email":"nghiaseven@gmail.com",
-      "customersTypeId":2,
+      "customersType":{
+        "id":1,
+        "name": "Member"
+    },
       "address":"Quang Binh"
     }
   ],
@@ -28,28 +34,6 @@
       "id": 1,
       "body": "some comment",
       "customerId": 1
-    }
-  ],
-  "customers_type": [
-    {
-      "id": 1,
-      "name": "Diamond"
-    },
-    {
-      "id": 2,
-      "name": "Platinium"
-    },
-    {
-      "id": 3,
-      "name": "Gold"
-    },
-    {
-      "id": 4,
-      "name": "Silver"
-    },
-    {
-      "id": 5,
-      "name": "Member"
     }
   ]
 }
