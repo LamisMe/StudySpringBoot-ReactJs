@@ -32,3 +32,6 @@ a {
   color: white;
   text-decoration: unset;
 }
+.err-name{
+  color: red;
+}
