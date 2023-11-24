@@ -57,7 +57,7 @@ function CustomerList() {
                 <Link
                     className="btn btn-sm btn-primary rounded-0 me-3"
                     type="button"
-                    to={`/update/${item.id}`}
+                    to={`/update-customer/${item.id}`}
                   >
                     Edit
                   </Link>

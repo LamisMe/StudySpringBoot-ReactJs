@@ -20,10 +20,10 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/list-service" element={<FuramaServiceList/>} />
         <Route path="/create-service" element={<FuramaServiceCreate/>} />
-        <Route path="/update-service" element={<FuramaServiceUpdate/>} />
+        <Route path="/update-service/:id" element={<FuramaServiceUpdate/>} />
         <Route path="/list-customer" element={<CustomerList/>} />
         <Route path="/create-customer" element={<CustomerCreate/>} />
-        <Route path="/update-customer" element={<CustomerUpdate/>} />
+        <Route path="/update-customer/:id" element={<CustomerUpdate/>} />
         <Route path="/list-contract" element={<ContractList/>} />
         <Route path="/create-contract" element={<ContractCreate/>} />
       </Routes>
