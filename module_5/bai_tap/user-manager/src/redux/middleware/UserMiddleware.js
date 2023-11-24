@@ -2,7 +2,6 @@ import * as userService from "../../services/UserServices";
 
 export const getAllUser = () => async (dispatch) =>{
     const res = await userService.getAll();
-    console.log(res);
     dispatch({
         type: "GET_ALL_USER",
         payload: res

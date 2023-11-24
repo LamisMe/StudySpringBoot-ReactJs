@@ -51,8 +51,15 @@ function CustomerList() {
                 <td>{item.name}</td>
                 <td>{item.dayOfBirth}</td>
                 <td>{item.address}</td>
-                <td>{item.phoneNumber}</td>
+                <td>{item.customersTypeId == customerTypes.id}</td>
                 <td>
+                <Link
+                    className="btn btn-sm btn-primary rounded-0 me-3"
+                    type="button"
+                    to={`/update/${item.id}`}
+                  >
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}
