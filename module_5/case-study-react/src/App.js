@@ -11,6 +11,7 @@ import ContractList from "./components/contract/ContractList";
 import ContractCreate from "./components/contract/ContractCreate";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
+import ContractUpdate from "./components/contract/ContractUpdate";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/update-customer/:id" element={<CustomerUpdate/>} />
         <Route path="/list-contract" element={<ContractList/>} />
         <Route path="/create-contract" element={<ContractCreate/>} />
+        <Route path="/update-contract/:id" element={<ContractUpdate/>} />
       </Routes>
       <Footer />      
     </>

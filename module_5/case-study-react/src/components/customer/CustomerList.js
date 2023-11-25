@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as customerService from "../../services/CustomerService";
-import * as typeCustomerService from "../../services/TypeCustomerService";
+
 
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
-  const [customerTypes, setCustomerTypes] = useState([]);
+  
   useEffect(() => {
     getAll();
   },[]);
   const getAll = async () => {
     let data = await customerService.getAllCutomers();
-    let dataType = await customerService.getAllCutomers();
     setCustomers(data);
-    setCustomerTypes(dataType);
   };
   if (!customers) {
     return null;

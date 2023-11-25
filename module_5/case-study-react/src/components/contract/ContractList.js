@@ -1,8 +1,23 @@
 import { Formik,Field,ErrorMessage,Form } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import * as contractService from "../../services/ContractService";
+
 
 function ContractList(){
+  const [contracts, setContracts] = useState([]);
+  
+  useEffect(() => {
+    getAll();
+  },[]);
+  const getAll = async () => {
+    let data = await contractService.getAllContract();
+    setContracts(data);
+  };
+  if (!contracts) {
+    return null;
+  }
     return(
         <>
         <div class="container" style={{marginTop: "6rem"}}>
@@ -17,7 +32,6 @@ function ContractList(){
             <tr>
                 <th>Mã hợp đồng</th>
                 <th>Khách hàng</th>
-                <th>Dịch vụ</th>
                 <th>Ngày làm hợp đồng</th>
                 <th>Ngày kết thúc hợp đồng</th>
                 <th>Tiền đặt cọc (Vnd)</th>
@@ -25,18 +39,18 @@ function ContractList(){
             </tr>
            </thead>
            <tbody className="table-light fst-italic">
-            <tr>
-                <td>1</td>
-                <td>LNTN</td>
-                <td>Villa</td>
-                <td>17/11/2023</td>
-                <td>19/11/2023</td>
-                <td>200.000</td>
+           {contracts.map((item) => (
+              <tr key={item.id}>
+                <td>{item.codeContract}</td>
+                <td>{item.customer.name}</td>
+                <td>{new Date(item.dateStart).toLocaleDateString()}</td>
+                <td>{new Date(item.dateEnd).toLocaleDateString()}</td>
+                <td>{item.pricePrevious}</td>
                 <td>
                 <Link
                     className="btn btn-sm btn-primary rounded-0 me-3"
                     type="button"
-                    to={`/update-contract/1`}
+                    to={`/update-contract/${item.id}`}
                   >
                     Edit
                   </Link>
@@ -51,6 +65,7 @@ function ContractList(){
                   </button>
                 </td>
             </tr>
+            ))}
            </tbody>
           </table>
           <div
