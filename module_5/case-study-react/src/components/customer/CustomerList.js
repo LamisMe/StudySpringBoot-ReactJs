@@ -20,10 +20,9 @@ function CustomerList() {
   }
   return (
     <>
-      <div class="container" style={{ marginTop: "6rem",
-    backgroundColor:"#f5f7f8" }}>
-        <h3 class="title mt-3">DANH SÁCH KHÁCH HÀNG</h3>
-        <div className="text-end">
+      <div class="container" style={{ marginTop: "6rem"}}>
+        <h3 class="title fst-italic">DANH SÁCH KHÁCH HÀNG</h3>
+        <div className="text-end fst-italic">
           <Link
             class="nav-link active"
             className="btn btn-success mb-3"
@@ -61,11 +60,65 @@ function CustomerList() {
                   >
                     Edit
                   </Link>
+                  <button
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    className="btn btn-sm btn-danger rounded-0"
+                
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content text-center">
+              <div className="modal-header justify-content-center">
+                <div>
+                  <h1
+                    className="modal-title text-danger fs-4"
+                    id="exampleModalLabel"
+                  >
+                    Xóa khách hàng
+                  </h1>
+                  <h5 className="modal-title text-danger fw-bold">
+                  </h5>
+                </div>
+              </div>
+              <div className="modal-body">
+                <h5>Bạn có chắc chắn xóa khách hàng này không?</h5>
+                Hành dộng này không thể hoàn tác!
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-secondary rounded-0"
+                  data-bs-dismiss="modal"
+                >
+                  Đóng
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger rounded-0"
+                  data-bs-dismiss="modal"
+                
+                >
+                  Xác nhận
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

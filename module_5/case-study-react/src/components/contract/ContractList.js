@@ -7,7 +7,7 @@ function ContractList(){
         <>
         <div class="container" style={{marginTop: "6rem"}}>
         <h3 class="title fst-italic">DANH SÁCH HỢP ĐỒNG</h3>
-        <div className="text-end">
+        <div className="text-end fst-italic">
         <Link class="nav-link active" className="btn btn-success mb-3" aria-current="page" to="/create-contract"
                   >Tạo mới hợp đồng</Link
                 >
@@ -24,7 +24,7 @@ function ContractList(){
                 <th>Chức năng</th>
             </tr>
            </thead>
-           <tbody className="table-light fw-bolder">
+           <tbody className="table-light fst-italic">
             <tr>
                 <td>1</td>
                 <td>LNTN</td>
@@ -33,16 +33,71 @@ function ContractList(){
                 <td>19/11/2023</td>
                 <td>200.000</td>
                 <td>
-                <Link class="nav-link active" className="btn btn-primary" aria-current="page" to="/update-contract"
-                  >Sửa</Link
-                >
-                <Link class="nav-link active" className="btn btn-danger" aria-current="page" to="/"
-                  style={{marginLeft:"20px"}}>Xóa</Link
-                >
+                <Link
+                    className="btn btn-sm btn-primary rounded-0 me-3"
+                    type="button"
+                    to={`/update-contract/1`}
+                  >
+                    Edit
+                  </Link>
+                <button
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    className="btn btn-sm btn-danger rounded-0"
+                
+                  >
+                    Delete
+                  </button>
                 </td>
             </tr>
            </tbody>
           </table>
+          <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content text-center">
+              <div className="modal-header justify-content-center">
+                <div>
+                  <h1
+                    className="modal-title text-danger fs-4"
+                    id="exampleModalLabel"
+                  >
+                    Xóa dịch vụ
+                  </h1>
+                  <h5 className="modal-title text-danger fw-bold">
+                  </h5>
+                </div>
+              </div>
+              <div className="modal-body">
+                <h5>Bạn có chắc chắn xóa dịch vụ này không?</h5>
+                Hành dộng này không thể hoàn tác!
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-secondary rounded-0"
+                  data-bs-dismiss="modal"
+                >
+                  Đóng
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger rounded-0"
+                  data-bs-dismiss="modal"
+                
+                >
+                  Xác nhận
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
         </>
     )
