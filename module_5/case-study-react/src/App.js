@@ -12,7 +12,8 @@ import ContractCreate from "./components/contract/ContractCreate";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import ContractUpdate from "./components/contract/ContractUpdate";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 function App() {
   return (
     <>
@@ -29,7 +30,8 @@ function App() {
         <Route path="/create-contract" element={<ContractCreate/>} />
         <Route path="/update-contract/:id" element={<ContractUpdate/>} />
       </Routes>
-      <Footer />      
+      <Footer /> 
+      <ToastContainer/>     
     </>
   );
 }

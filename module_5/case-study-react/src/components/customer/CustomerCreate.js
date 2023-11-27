@@ -1,12 +1,16 @@
 import React from "react";
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as customerService from "../../services/CustomerService";
+import {toast} from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function CustomerCreate() {
+  const navigate = useNavigate();
   const initValue = {
       name: "",
       dayOfBirth: "",
-      gender: "",
+      gender: 0,
       idCard:"",
       phoneNumber:"",
       customersType: "",
@@ -15,18 +19,25 @@ function CustomerCreate() {
   const validateForm = {
     name : yup.string().required("Không được để trống trường này *"),
     dayOfBirth : yup.string().required("Không được để trống trường này *"),
-    gender : yup.string().required("Không được để trống trường này *"),
     idCard : yup.string().required("Không được để trống trường này *"),
     phoneNumber : yup.string().required("Không được để trống trường này *"),
     address : yup.string().required("Không được để trống trường này *"),
-  }
+  };
+  const createCustomer = (customer) => {
+    let isSuccess = customerService.saveCusstomer(customer);
+    if (isSuccess) {
+      toast.success("Create successfully!!!!!");
+      navigate("/list-customer");
+    }
+    console.log("fail");
+  };
   return (
     <>
       <div class="container" style={{ marginTop: "6rem" }}>
         <h3 class="mt-3">Thêm khách hàng</h3>
         <Formik initialValues={initValue}
-        onSubmit={()=>{
-
+        onSubmit={(values)=>{
+            createCustomer(values);
         }}
         validationSchema={yup.object(validateForm)}>
           <Form>
@@ -45,7 +56,7 @@ function CustomerCreate() {
               <label for="date" name="date" class="form-label">
                 Ngày sinh<span style={{ color: "red" }}>(*)</span>
               </label>
-              <Field type="text" name="dayOfBirth" class="form-control" id="date" />
+              <Field type="date" name="dayOfBirth" class="form-control" id="date" />
               <ErrorMessage
                 name="dayOfBirth"
                 component="span"
@@ -125,8 +136,8 @@ function CustomerCreate() {
                 name="customersType" component="select"
                 aria-label="Default select example"
               >
-                <option selected>Chọn loại khách</option>
-                <option value="1">Vip</option>
+                <option selected="">Chọn loại khách</option>
+                <option value="1">Dinamond</option>
                 <option value="2">Thường</option>
                 <option value="3">None</option>
               </Field>

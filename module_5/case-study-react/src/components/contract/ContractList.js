@@ -3,11 +3,12 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import * as contractService from "../../services/ContractService";
+import { toast } from "react-toastify";
 
 
 function ContractList(){
   const [contracts, setContracts] = useState([]);
-  
+  const [contractDelete,setContractDelete] = useState([]);
   useEffect(() => {
     getAll();
   },[]);
@@ -15,8 +16,18 @@ function ContractList(){
     let data = await contractService.getAllContract();
     setContracts(data);
   };
+  const handlerContract = (contract) => {
+    setContractDelete(contract);
+  };
   if (!contracts) {
     return null;
+  }
+  const deleteContract = async () =>{
+    let isSuccess = await contractService.deleteContract(contractDelete.id);
+    if(isSuccess){
+        toast.error("Delete successfully!!!!!");
+        getAll();
+    }
   }
     return(
         <>
@@ -59,7 +70,7 @@ function ContractList(){
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     className="btn btn-sm btn-danger rounded-0"
-                
+                    onClick={() =>handlerContract(item)}
                   >
                     Delete
                   </button>
@@ -90,7 +101,7 @@ function ContractList(){
                 </div>
               </div>
               <div className="modal-body">
-                <h5>Bạn có chắc chắn xóa dịch vụ này không?</h5>
+                <h5>Bạn có chắc chắn xóa dịch vụ {contractDelete.codeContract} không?</h5>
                 Hành dộng này không thể hoàn tác!
               </div>
               <div className="modal-footer">
@@ -105,7 +116,7 @@ function ContractList(){
                   type="button"
                   className="btn btn-sm btn-danger rounded-0"
                   data-bs-dismiss="modal"
-                
+                  onClick={deleteContract}
                 >
                   Xác nhận
                 </button>

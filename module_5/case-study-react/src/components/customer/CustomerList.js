@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as customerService from "../../services/CustomerService";
+import { toast } from "react-toastify";
 
 
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
-  
+  const [customerDelete, setCustomerDelete] = useState([]);
+
   useEffect(() => {
     getAll();
   },[]);
   const getAll = async () => {
     let data = await customerService.getAllCutomers();
     setCustomers(data);
+  };
+  const handlerCustomer = (customer) => {
+    setCustomerDelete(customer);
+  };
+  const deleteCustomer = async () => {
+    const isSuccess = await customerService.deleteCustomer(customerDelete.id);
+    if (isSuccess) {
+      toast.error("Delete successfully!!!!!");
+      getAll();
+    }
   };
   if (!customers) {
     return null;
@@ -63,7 +75,7 @@ function CustomerList() {
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     className="btn btn-sm btn-danger rounded-0"
-                
+                    onClick={() => handlerCustomer(item)}
                   >
                     Delete
                   </button>
@@ -94,7 +106,7 @@ function CustomerList() {
                 </div>
               </div>
               <div className="modal-body">
-                <h5>Bạn có chắc chắn xóa khách hàng này không?</h5>
+                <h5>Bạn có chắc chắn xóa khách hàng {customerDelete.name} không?</h5>
                 Hành dộng này không thể hoàn tác!
               </div>
               <div className="modal-footer">
@@ -109,7 +121,7 @@ function CustomerList() {
                   type="button"
                   className="btn btn-sm btn-danger rounded-0"
                   data-bs-dismiss="modal"
-                
+                  onClick={deleteCustomer}
                 >
                   Xác nhận
                 </button>

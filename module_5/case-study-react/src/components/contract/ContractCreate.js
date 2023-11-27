@@ -1,33 +1,45 @@
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import * as contractService from "../../services/ContractService";
+import {toast} from "react-toastify";
+import * as customerService from "../../services/CustomerService";
 
 function ContractCreate() {
+  const navigate = useNavigate();
   const initValue = {
     codeContract: "",
     totalPrice: "",
-    customer: "",
+    customer: 1,
     dateStart: "",
     dateEnd: "",
     pricePrevious: "",
     address: "",
+    typeFacility: 1
   };
   const validateForm = {
     codeContract: Yup.string().required("Không được để trống trường này *"),
-    dayOfBirth: Yup.string().required("Không được để trống trường này *"),
     dateStart: Yup.string().required("Không được để trống trường này *"),
     dateEnd: Yup.string().required("Không được để trống trường này *"),
     pricePrevious: Yup.string().required("Không được để trống trường này *"),
     totalPrice: Yup.string().required("Không được để trống trường này *"),
     address:Yup.string().required("Không được để trống trường này *"),
   };
+  const createContract = (contract) => {
+    let isSuccess = contractService.saveContract(contract);
+    if (isSuccess) {
+      toast.success("Create successfully!!!!!");
+      navigate("/list-contract");
+    }
+    console.log("fail");
+  };
   return (
     <>
       <div class="container" style={{ marginTop: "6rem" }}>
         <h3 class="mt-3">Thêm hợp đồng</h3>
         <Formik initialValues={initValue}
-        onSubmit={()=>{
-
+        onSubmit={(values)=>{
+            createContract(values)
         }}
         validationSchema={Yup.object(validateForm)}>
           <Form>
@@ -58,7 +70,7 @@ function ContractCreate() {
                 Loại dịch vụ<span style={{ color: "red" }}>(*)</span>
               </label>
               <Field name="typeFacility" class="form-select" component="select" aria-label="Default select example">
-                <option selected>Chọn loại dịch vụ</option>
+                <option selected="">Chọn loại dịch vụ</option>
                 <option value="1">Villa</option>
                 <option value="2">House</option>
                 <option value="3">Room</option>
