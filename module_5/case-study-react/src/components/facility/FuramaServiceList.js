@@ -1,80 +1,61 @@
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import * as contractService from "../../services/ContractService";
 import { toast } from "react-toastify";
+import * as furamaFacilityService from "../../services/FuramaFacilityServices";
 
-
-function ContractList(){
-  const [contracts, setContracts] = useState([]);
-  const [contractDelete,setContractDelete] = useState([]);
-  useEffect(() => {
-    getAll();
-  },[]);
-  const getAll = async () => {
-    let data = await contractService.getAllContract();
-    setContracts(data);
-  };
-  const handlerContract = (contract) => {
-    setContractDelete(contract);
-  };
-  if (!contracts) {
-    return null;
-  }
-  const deleteContract = async () =>{
-    let isSuccess = await contractService.deleteContract(contractDelete.id);
-    if(isSuccess){
-        toast.error("Delete successfully!!!!!");
-        getAll();
+function FuramaServiceList(){
+    const navigate = useNavigate();
+    const[facilities,setFacilities] = useState([]);
+    const[facilityDelete,setFacilityDelete] = useState([]);
+    useEffect(()=>{
+            getAll()
+    },[]);
+    const getAll =async () =>{
+        let data = await furamaFacilityService.getAllFacility();
+        setFacilities(data);
     }
-  }
+    const handlerFacility = (value) =>{
+        setFacilityDelete(value);
+    }
+    const deleteFacility = async () =>{
+        let isSuccess = await furamaFacilityService.deleteFacility(facilityDelete.id);
+        if(isSuccess){
+            toast.success("Xóa thành công")
+            navigate("/")
+        }
+    }
+    if(!facilities) return null;
     return(
         <>
-        <div class="container" style={{marginTop: "6rem"}}>
-        <h3 class="title fst-italic">DANH SÁCH HỢP ĐỒNG</h3>
-        <div className="text-end fst-italic">
-        <Link class="nav-link active" className="btn btn-success mb-3" aria-current="page" to="/create-contract"
-                  >Tạo mới hợp đồng</Link
-                >
-        </div>
+<div class="container" style={{marginTop: "6rem"}}>
+        <h3 class="title fst-italic">DANH SÁCH DỊCH VỤ</h3>
         <table class="table">
            <thead className="table-dark">
             <tr>
-                <th>Mã hợp đồng</th>
-                <th>Khách hàng</th>
-                <th>Ngày làm hợp đồng</th>
-                <th>Ngày kết thúc hợp đồng</th>
-                <th>Tiền đặt cọc (Vnd)</th>
+                <th>STT</th>
+                <th>Tên dịch vụ</th>
                 <th>Chức năng</th>
             </tr>
            </thead>
            <tbody className="table-light fst-italic">
-           {contracts.map((item) => (
-              <tr key={item.id}>
-                <td>{item.codeContract}</td>
-                <td>{item.customer.name}</td>
-                <td>{item.dateStart}</td>
-                <td>{item.dateEnd}</td>
-                <td>{item.pricePrevious}</td>
+            {facilities.map((item,index)=>(
+                <tr key={item.id}>
+                <td>{index+1}</td>
+                <td>{item.name}</td>
                 <td>
-                <Link
-                    className="btn btn-sm btn-primary rounded-0 me-3"
-                    type="button"
-                    to={`/update-contract/${item.id}`}
-                  >
-                    Edit
-                  </Link>
                 <button
                     type="button"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     className="btn btn-sm btn-danger rounded-0"
-                    onClick={() =>handlerContract(item)}
+                    onClick={() =>handlerFacility(item)}
                   >
                     Delete
                   </button>
                 </td>
-            </tr>
+                </tr>
             ))}
+            
            </tbody>
           </table>
           <div
@@ -99,7 +80,7 @@ function ContractList(){
                 </div>
               </div>
               <div className="modal-body">
-                <h5>Bạn có chắc chắn xóa dịch vụ {contractDelete.codeContract} không?</h5>
+                <h5>Bạn có chắc chắn xóa dịch vụ {facilityDelete.name} không?</h5>
                 Hành dộng này không thể hoàn tác!
               </div>
               <div className="modal-footer">
@@ -114,7 +95,7 @@ function ContractList(){
                   type="button"
                   className="btn btn-sm btn-danger rounded-0"
                   data-bs-dismiss="modal"
-                  onClick={deleteContract}
+                  onClick={deleteFacility}
                 >
                   Xác nhận
                 </button>
@@ -127,4 +108,4 @@ function ContractList(){
     )
 }
 
-export default ContractList;
+export default FuramaServiceList;
