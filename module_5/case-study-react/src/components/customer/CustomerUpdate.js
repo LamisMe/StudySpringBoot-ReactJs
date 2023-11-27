@@ -1,34 +1,51 @@
 import React from "react";
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { toast } from "react-toastify";
+import { useState, useEffect } from "react";
+import * as customerService from "../../services/CustomerService";
+import { useNavigate, useParams } from "react-router-dom";
 
-function CustomerUpdate(){
-  const initValue = {
-    name: "",
-    dayOfBirth: "",
-    gender: "",
-    idCard:"",
-    phoneNumber:"",
-    customersType: "",
-    address:""
-}
-const validateForm = {
-  name : yup.string().required("Không được để trống trường này *"),
-  dayOfBirth : yup.string().required("Không được để trống trường này *"),
-  gender : yup.string().required("Không được để trống trường này *"),
-  idCard : yup.string().required("Không được để trống trường này *"),
-  phoneNumber : yup.string().required("Không được để trống trường này *"),
-  address : yup.string().required("Không được để trống trường này *"),
-}
-    return(
+function CustomerUpdate() {
+  const navigate = useNavigate();
+  const [Customer, setCustomer] = useState();
+  const { id } = useParams();
+  useEffect(() => {
+    findById();
+  }, []);
+  const findById = async () => {
+    let data = await customerService.findByIdCustomer(id);
+    setCustomer(data);
+  };
+  const updateCustomer = (values) => {
+    let isSuccess = customerService.editCustomer(values, Customer);
+    if (isSuccess) {
+      toast.success("Update successfully!!!!!");
+      navigate("/list-customer");
+    }
+  };
+  if (!Customer) {
+    return null;
+  }
+  const validateForm = {
+    name: yup.string().required("Không được để trống trường này *"),
+    dayOfBirth: yup.string().required("Không được để trống trường này *"),
+    gender: yup.string().required("Không được để trống trường này *"),
+    idCard: yup.string().required("Không được để trống trường này *"),
+    phoneNumber: yup.string().required("Không được để trống trường này *"),
+    address: yup.string().required("Không được để trống trường này *"),
+  };
+  return (
     <>
-     <div class="container" style={{marginTop: "6rem"}}>
+      <div class="container" style={{ marginTop: "6rem" }}>
         <h3 class="mt-3">Cập nhật khách hàng</h3>
-        <Formik initialValues={initValue}
-        onSubmit={()=>{
-
-        }}
-        validationSchema={yup.object(validateForm)}>
+        <Formik
+          initialValues={{...Customer}}
+          onSubmit={(value) => {
+            updateCustomer(value);
+          }}
+          validationSchema={yup.object(validateForm)}
+        >
           <Form>
             <div class="mb-3">
               <label for="name" class="form-label">
@@ -45,7 +62,12 @@ const validateForm = {
               <label for="date" name="date" class="form-label">
                 Ngày sinh<span style={{ color: "red" }}>(*)</span>
               </label>
-              <Field type="text" name="dayOfBirth" class="form-control" id="date" />
+              <Field
+                type="date"
+                name="dayOfBirth"
+                class="form-control"
+                id="date"
+              />
               <ErrorMessage
                 name="dayOfBirth"
                 component="span"
@@ -98,7 +120,12 @@ const validateForm = {
               <label for="inputCMND" class="form-label">
                 Số CMND<span style={{ color: "red" }}>(*)</span>
               </label>
-              <Field type="text" name="idCard" class="form-control" id="inputIdCard" />
+              <Field
+                type="text"
+                name="idCard"
+                class="form-control"
+                id="inputIdCard"
+              />
               <ErrorMessage
                 name="idCard"
                 component="span"
@@ -109,7 +136,12 @@ const validateForm = {
               <label for="inputPhoneNumber" class="form-label">
                 Số Điện Thoại<span style={{ color: "red" }}>(*)</span>
               </label>
-              <Field type="text" name="phoneNumber" class="form-control" id="inputPhoneNumber" />
+              <Field
+                type="text"
+                name="phoneNumber"
+                class="form-control"
+                id="inputPhoneNumber"
+              />
               <ErrorMessage
                 name="phoneNumber"
                 component="span"
@@ -122,7 +154,8 @@ const validateForm = {
               </label>
               <Field
                 class="form-select"
-                name="customersType" component="select"
+                name="customersType"
+                component="select"
                 aria-label="Default select example"
               >
                 <option selected>Chọn loại khách</option>
@@ -154,7 +187,7 @@ const validateForm = {
         </Formik>
       </div>
     </>
-    )
+  );
 }
 
 export default CustomerUpdate;

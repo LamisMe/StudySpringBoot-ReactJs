@@ -54,8 +54,8 @@ function ContractList(){
               <tr key={item.id}>
                 <td>{item.codeContract}</td>
                 <td>{item.customer.name}</td>
-                <td>{new Date(item.dateStart).toLocaleDateString()}</td>
-                <td>{new Date(item.dateEnd).toLocaleDateString()}</td>
+                <td>{item.dateStart}</td>
+                <td>{item.dateEnd}</td>
                 <td>{item.pricePrevious}</td>
                 <td>
                 <Link

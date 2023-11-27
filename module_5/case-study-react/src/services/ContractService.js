@@ -36,9 +36,9 @@ export const findByIdContract = async (id) => {
       }
 }
 
-export const editCustomer = async (customer) =>{
+export const editContract = async (contract) =>{
     try {
-        await axios.patch(`http://localhost:8080/customers/${customer.id}`,customer);
+        await axios.patch(`http://localhost:8080/contracts/${contract.id}`,contract);
         return true;
     } catch (e) {
         return false;

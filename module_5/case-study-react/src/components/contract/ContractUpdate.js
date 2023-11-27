@@ -1,33 +1,45 @@
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { useNavigate,useParams} from "react-router-dom";
+import * as contractService from "../../services/ContractService";
+import {toast} from "react-toastify";
+import { useState,useEffect } from "react";
+
 
 function ContractUpdate() {
-  const initValue = {
-    codeContract: "",
-    totalPrice: "",
-    customer: "",
-    dateStart: "",
-    dateEnd: "",
-    pricePrevious: "",
-    address: "",
+  const navigate = useNavigate();
+  const [contract, setContract] = useState();
+  const { id } = useParams();
+  useEffect(() => {
+    findById();
+  }, []);
+  const findById = async () => {
+    let data = await contractService.findByIdContract(id);
+    setContract(data);    
   };
+  const updateContract = (values) => {
+    let isSuccess = contractService.editContract(values, contract);
+    if (isSuccess) {
+      toast.success("Update successfully!!!!!");
+      navigate("/list-contract");
+    }
+  };
+  if (!contract) {
+    return null;
+  }
   const validateForm = {
-    codeContract: Yup.string().required("Không được để trống trường này *"),
-    dayOfBirth: Yup.string().required("Không được để trống trường này *"),
     dateStart: Yup.string().required("Không được để trống trường này *"),
     dateEnd: Yup.string().required("Không được để trống trường này *"),
     pricePrevious: Yup.string().required("Không được để trống trường này *"),
     totalPrice: Yup.string().required("Không được để trống trường này *"),
-    address:Yup.string().required("Không được để trống trường này *"),
   };
   return (
     <>
       <div class="container" style={{ marginTop: "6rem" }}>
         <h3 class="mt-3">Cập nhật hợp đồng</h3>
-        <Formik initialValues={initValue}
-        onSubmit={()=>{
-
+        <Formik initialValues={{...contract}}
+        onSubmit={(value)=>{
+            updateContract(value)
         }}
         validationSchema={Yup.object(validateForm)}>
           <Form>
@@ -38,17 +50,6 @@ function ContractUpdate() {
               <Field type="text" name="codeContract" class="form-control" id="name" />
               <ErrorMessage
                 name="codeContract"
-                component="span"
-                className="err-name"
-              ></ErrorMessage>
-            </div>
-            <div class="mb-3">
-              <label for="service" class="form-label">
-                Khách hàng sử dụng dịch vụ<span class="text-danger">(*)</span>
-              </label>
-              <Field type="text" name="customer" class="form-control" id="service" />
-              <ErrorMessage
-                name="customer"
                 component="span"
                 className="err-name"
               ></ErrorMessage>
