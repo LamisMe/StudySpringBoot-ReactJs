@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+    />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  </head>
+  <body>
+    <div class="container-fluid mt-3">
+      <h1 class="fst-italic text-center text-dark-50 pt-3">DANH SÁCH</h1>
+      <div class="text-lg-end mb-3">
+       
+        <button
+          type="button"
+          class="btn btn-secondary me-lg-3 fst-italic"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModalSearch"
+        >
+          Bộ lọc tìm kiếm
+        </button>
+
+        <button
+        type="button"
+        class="btn btn-success me-lg-3 fst-italic">
+        <a>Thêm Mới Sản Phẩm</a>
+      </button>
+      </div>
+      <table class="table">
+        <thead class="table-secondary fst-italic">
+          <tr>
+            <th>STT</th>
+            <th>#</th>
+            <th>#</th>
+            <th>#</th>
+            <th>Chức năng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>#</td>
+            <td>#</td>
+            <td>#</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#modalDelete"
+              >
+              <i class='bx bxs-trash-alt' ></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modalDelete"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title fst-italic text-danger"
+              id="staticBackdropLabel"
+            >
+              Xóa Sản Phẩm
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h5 class="fst-italic">Bạn có chắc chắn muốn xóa không ?</h5>
+            <p class="text-danger">Lưu ý: Hành dộng này không thể hoàn tác</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Đóng
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Xóa
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Search-->
+    <div
+      class="modal fade"
+      id="exampleModalSearch"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1
+              class="modal-title fs-5 fst-italic text-primary"
+              id="exampleModalLabel"
+            >
+              Nhập thông tin cần tìm
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="col-auto mt-2">
+              <label for="inputNameSearch" class="visually"
+                ><strong class="text-secondary">Nhập tên tìm kiếm</strong></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="inputNameSearch"
+                placeholder="Nhập tên tìm kiếm"
+              />
+            </div>
+            <div class="col-auto mt-2">
+              <label for="inputDateStart" class="visually"
+                ><strong class="text-secondary">Ngày bắt đầu</strong></label
+              >
+              <input type="date" class="form-control" />
+            </div>
+            <div class="col-auto mt-2">
+              <label for="inputDateStart fw-bold" class="visually"
+                ><strong class="text-secondary">Ngày kết thúc</strong></label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="inputDateStart"
+                placeholder="Password"
+              />
+            </div>
+            <div class="col-auto mt-4 text-end me-lg-3">
+              <button
+                type="submit"
+                class="btn btn-primary mb-3 fst-italic"
+                data-bs-dismiss="modal"
+              >
+                Tìm kiếm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
+</html>

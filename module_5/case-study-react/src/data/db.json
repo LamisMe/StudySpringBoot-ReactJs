@@ -98,6 +98,28 @@
       "address": "QB",
       "typeFacility": "3",
       "id": 4
+    },
+    {
+      "codeContract": "HD_008",
+      "totalPrice": "89999",
+      "customer": "2",
+      "dateStart": "2023-11-30",
+      "dateEnd": "2023-12-01",
+      "pricePrevious": "60000",
+      "address": "QBB",
+      "typeFacility": 1,
+      "id": 5
+    },
+    {
+      "codeContract": "HD1",
+      "totalPrice": "7888",
+      "customer": "[object Object]",
+      "dateStart": "2023-12-01",
+      "dateEnd": "2023-11-28",
+      "pricePrevious": "50000",
+      "address": "e",
+      "typeFacility": 1,
+      "id": 6
     }
   ],
   "facilities": [

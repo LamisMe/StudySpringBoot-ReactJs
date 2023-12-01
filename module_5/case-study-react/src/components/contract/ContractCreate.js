@@ -39,7 +39,7 @@ function ContractCreate() {
       .min(new Date(), "Không nhỏ hơn ngày hiện tại"),
     dateEnd: Yup.date()
       .required("Không được để trống trường này *")
-      .min(new Date(), "Không nhỏ hơn ngày hiện tại"),
+      .min(Yup.ref('dateStart'), "Không nhỏ hơn ngày bắt đầu"),
     pricePrevious: Yup.string().required("Không được để trống trường này *"),
     totalPrice: Yup.string().required("Không được để trống trường này *"),
     address: Yup.string().required("Không được để trống trường này *"),

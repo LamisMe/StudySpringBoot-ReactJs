@@ -1,0 +1,34 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Tôi là thỏ",
+      "day": "2023-09-11",
+      "author": "Lâm",
+      "type": {
+        "id": 2,
+        "name": "sức khỏe"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Tôi là rùa",
+      "day": "2023-09-11",
+      "author": "Lâm",
+      "type": {
+        "id": 1,
+        "name": "thể thao"
+      }
+    }
+  ],
+  "types": [
+    {
+      "id": 1,
+      "name": "thể thao"
+    },
+    {
+      "id": 2,
+      "name": "sức khỏe"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "bookings": [
+    {
+      "id": 1,
+      "code": "200",
+      "dateBuy": "2023-11-09",
+      "totalPrice": 700000,
+      "quantity": 2,
+      "product": {
+        "id": 1,
+        "name": "Iphone X",
+        "price": 600000
+      }
+    },
+    {
+      "id": 2,
+      "code": "201",
+      "dateBuy": "2023-12-08",
+      "totalPrice": 8000000,
+      "quantity": 2,
+      "product": {
+        "id": 2,
+        "name": "Samsung note 10",
+        "price": 400000
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": 2,
+      "name": "Samsung note 10",
+      "price": 1500000
+    },
+    {
+      "id": 1,
+      "name": "Iphone X",
+      "price": 500000
+    },
+    {
+      "id": 3,
+      "name": "Oppo 10",
+      "price": 1500000
+    }
+  ]
+}
